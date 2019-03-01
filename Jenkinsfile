@@ -15,6 +15,13 @@ pipeline {
     }
     stages {
 
+        stage('SetUp') {
+            steps {
+                "sh bin/clean_up.sh"
+            }
+        }
+
+
         stage('Unit Tests') {
             steps {
              parallel(
@@ -61,11 +68,15 @@ pipeline {
             when {
                     allOf {
                           expression { !currentBuild.result }
-                          branch 'develop'
                     }
                 }
             steps {
-                sh "echo build"
+                sh "docker/build_packages.sh"
+            }
+            post {
+                success {
+                    archiveArtifacts 'dist/*'
+                }
             }
 
         }
