@@ -14,7 +14,7 @@ pipeline {
         PYIOC_PATCH_VERSION = "${env.BUILD_NUMBER}"
         PYIOC_REPOSITORY_URL = "https://test.pypi.org/legacy/"
         PYIOC_PYPI_USERNAME = credentials('PYIOC_PYPI_USERNAME')
-        PYIOC_PYPI_PASWWORD = credentials('PYIOC_PYPI_PASWWORD')
+        PYIOC_PYPI_PASSWORD = credentials('PYIOC_PYPI_PASSWORD')
     }
     stages {
 
