@@ -11,7 +11,7 @@ mkdir -p reports
 
 docker run \
 -v ${SRC_DIR}:/code \
--e PYIOC_PATCH_VERSION\
+-e PYIOC_PATCH_VERSION \
 -w="/code" \
 python:3 \
 bin/build_packages_docker.sh
