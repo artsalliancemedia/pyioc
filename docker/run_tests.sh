@@ -11,7 +11,7 @@ PYTHON_IMAGE=python:${PYTHON_VERSION}
 
 mkdir -p reports
 
-docker run -it \
+docker run \
 -v ${SRC_DIR}:/code \
 -e PYTHON_VERSION=${PYTHON_VERSION} \
 -w="/code" \
