@@ -17,7 +17,7 @@ pipeline {
 
         stage('SetUp') {
             steps {
-                "sh bin/clean_up.sh"
+                sh "bin/clean_up.sh"
             }
         }
 
