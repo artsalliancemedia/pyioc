@@ -9,7 +9,7 @@ SRC_DIR=$(dirname ${FILE_DIR})
 docker run \
 -v ${SRC_DIR}:/code \
 -e PYIOC_PYPI_USERNAME \
--e PYIOC_PYPI_PASWWORD \
+-e PYIOC_PYPI_PASSWORD \
 -e PYIOC_REPOSITORY_URL \
 -w="/code" \
 python:3 \
