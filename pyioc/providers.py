@@ -1,11 +1,5 @@
 # coding=utf-8
-from __future__ import absolute_import
-from future.standard_library import install_aliases
-
-install_aliases()
-
 import inspect
-import six
 import abc
 
 
@@ -14,12 +8,8 @@ class SignatureError(TypeError):
 
 
 def _check_if_init_implemented(obj):
-    if six.PY2:
-        if inspect.ismethod(obj.__init__):
-            return True
-    if six.PY3:
-        if inspect.isfunction(obj.__init__):
-            return True
+    if inspect.isfunction(obj.__init__):
+        return True
 
     return False
 
@@ -36,7 +26,7 @@ def validate_if_callable_without_args(obj):
     else:
         obj_to_inspect = obj
 
-    spec = inspect.getargspec(obj_to_inspect)
+    spec = inspect.getfullargspec(obj_to_inspect)
     args = spec.args
     par_len = len(args)
     if par_len > 1:
@@ -46,8 +36,7 @@ def validate_if_callable_without_args(obj):
             raise SignatureError('callable cant have arguments')
 
 
-@six.add_metaclass(abc.ABCMeta)
-class ProviderBase(object):
+class ProviderBase(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def get_instance(self, context=None):
         pass
@@ -105,11 +94,11 @@ class NewInstancesWithDepsProvider(ProviderBase):
     def _build_object(self, context):
         if inspect.isclass(self._callable_object):
             if _check_if_init_implemented(self._callable_object):
-                args = inspect.getargspec(self._callable_object.__init__).args
+                args = inspect.getfullargspec(self._callable_object.__init__).args
             else:
                 args = ()
         else:
-            args = inspect.getargspec(self._callable_object).args
+            args = inspect.getfullargspec(self._callable_object).args
 
         new_args = []
         for arg in args:
