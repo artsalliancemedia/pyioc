@@ -12,7 +12,7 @@ pipeline {
     }
     environment {
         PYIOC_PATCH_VERSION = "${env.BUILD_NUMBER}"
-        PYIOC_REPOSITORY_URL = "https://test.pypi.org/legacy/"
+        PYIOC_REPOSITORY_URL = "https://upload.pypi.org/legacy/"
         PYIOC_PYPI_USERNAME = credentials('PYIOC_PYPI_USERNAME')
         PYIOC_PYPI_PASSWORD = credentials('PYIOC_PYPI_PASSWORD')
     }
@@ -89,7 +89,7 @@ pipeline {
             when {
                     allOf {
                           expression { !currentBuild.result }
-                          branch 'py3ioc'
+                          branch 'master'
                     }
                 }
             steps {
