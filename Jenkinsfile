@@ -93,7 +93,7 @@ pipeline {
                     }
                 }
             steps {
-                sh "echo publish"
+                sh "docker/publish_packages.sh"
             }
 
         }
