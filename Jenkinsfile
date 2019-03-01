@@ -14,10 +14,8 @@ pipeline {
         PYIOC_PATCH_VERSION = "${env.BUILD_NUMBER}"
     }
     stages {
-        stage('Unit Tests') {
-        }
 
-        stage('GUI Tests') {
+        stage('Unit Tests') {
             steps {
              parallel(
                         "3.4": {
