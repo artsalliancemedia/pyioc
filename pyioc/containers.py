@@ -1,14 +1,7 @@
 # coding=utf-8
-from __future__ import absolute_import
-
-from future.standard_library import install_aliases
-
-install_aliases()
 
 import abc
-import six
 
-from future.utils import iteritems
 from collections import namedtuple
 from enum import Enum
 
@@ -41,8 +34,7 @@ class InstanceLifetime(Enum):
     """
 
 
-@six.add_metaclass(abc.ABCMeta)
-class IdParserBase(object):
+class IdParserBase(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def parse(self, key):
         pass
@@ -220,7 +212,7 @@ class NamespacedContainer(SimpleContainer):
         result = {}
         result[self.name] = self.get_keys()
 
-        for name, container in iteritems(self._sub_containers):
+        for name, container in self._sub_containers.items():
             result[name] = container.get_keys()
 
         return result

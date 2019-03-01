@@ -2,14 +2,8 @@
 """
 Module containing implementation of the service locator.
 """
-from __future__ import absolute_import
-
-from future.standard_library import install_aliases
-
-install_aliases()
 
 import inspect
-import six
 import abc
 
 
@@ -45,8 +39,7 @@ class KeyAlreadyRegisteredError(KeyError):
         return self.__str__()
 
 
-@six.add_metaclass(abc.ABCMeta)
-class LocatorBase(object):
+class LocatorBase(metaclass=abc.ABCMeta):
     """
     Abstract Class Base declaring locator interface.
     """
