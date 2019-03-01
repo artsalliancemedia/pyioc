@@ -12,6 +12,9 @@ pipeline {
     }
     environment {
         PYIOC_PATCH_VERSION = "${env.BUILD_NUMBER}"
+        PYIOC_REPOSITORY_URL = "https://test.pypi.org/legacy/"
+        PYIOC_PYPI_USERNAME = credentials('PYIOC_PYPI_USERNAME')
+        PYIOC_PYPI_PASWWORD = credentials('PYIOC_PYPI_PASWWORD')
     }
     stages {
 
@@ -86,7 +89,7 @@ pipeline {
             when {
                     allOf {
                           expression { !currentBuild.result }
-                          branch 'develop'
+                          branch 'py3ioc'
                     }
                 }
             steps {
@@ -97,7 +100,7 @@ pipeline {
     }
     post {
         always {
-            sh "echo clean-up-workspace"
+            sh "bin/clean_up.sh"
         }
     }
 }
