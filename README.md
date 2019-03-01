@@ -30,7 +30,7 @@ Thanks to that unit tests run almost instantly.
 
 
 After that you can run unit tests inside container for python versions 3.3 3.4 3.5 3.6 3.7
-by runnint command: 
+by running command: 
 
 ```bash
 ./docker/run_tests.sh
