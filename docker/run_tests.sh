@@ -1,17 +1,21 @@
 #!/usr/bin/env bash
 
-set -e
+set -x
 
 FILE_PATH=$(readlink -f ${BASH_SOURCE[0]})
 FILE_DIR=$(dirname ${FILE_PATH})
 SRC_DIR=$(dirname ${FILE_DIR})
 
-for PY_VER in 2.6 2.7 3.3 3.4 3.5 3.6
-do
-    docker run -it \
-    -v ${SRC_DIR}:/code \
-    -e PY_VER=${PY_VER} \
-    -e EXEC_USER_ID=$(id -u) \
-    mrupgrade/pyioc-test:latest \
-    bin/run_tests.sh
-done
+PYTHON_VERSION="${PYTHON_VERSION:-3}"
+PYTHON_IMAGE=python:${PYTHON_VERSION}
+
+mkdir -p reports
+
+docker run -it \
+-v ${SRC_DIR}:/code \
+-e PYTHON_VERSION=${PYTHON_VERSION} \
+-w="/code" \
+${PYTHON_IMAGE} \
+bin/run_tests_docker.sh
+
+

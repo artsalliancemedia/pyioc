@@ -29,7 +29,7 @@ to time optimisation - for every python version all requirements are installed d
 Thanks to that unit tests run almost instantly.
 
 
-After that you can run unit tests inside container for python versions 2.6, 2.7 3.3 3.4 3.5
+After that you can run unit tests inside container for python versions 3.3 3.4 3.5 3.6 3.7
 by runnint command: 
 
 ```bash

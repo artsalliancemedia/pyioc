@@ -1,19 +1,18 @@
 # coding=utf-8
+import os
 from setuptools import setup
 
+PATCH_VERSION = os.getenv('PYIOC_PATCH_VERSION', '0')
 setup(
-    name='pyioc',
-    version='0.3.0',
+    name='py3ioc',
+    version='0.1.%s' % PATCH_VERSION,
     packages=['pyioc'],
-    url='https://github.com/MrUPGrade/pyioc',
+    url='https://github.com/artsalliancemedia/pyioc',
     license='MIT',
-    author='Jakub (Mr. UPGrade) Czapliński',
-    author_email='itsupgradetime@gmail.com',
-    description='Python IoC tools.',
+    author='',
+    author_email='',
+    description='Python3 IoC tools.',
     install_requires=[
-        'six>=1.9.0',
-        'future>=0.15.2',
-        'enum34>=1.1.1',
     ],
     extras_require={
         'test': [
@@ -24,16 +23,9 @@ setup(
         'dev': [
             'ipython',
             'flake8'
-        ],
-        'doc': [
-            'sphinx'
         ]
     },
     classifiers=[
-        "Programming Language :: Python :: 2.6",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.3",
-        "Programming Language :: Python :: 3.4",
-        "Programming Language :: Python :: 3.5"
+        "Programming Language :: Python :: 3"
     ]
 )
